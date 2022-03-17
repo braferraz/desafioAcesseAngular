@@ -1,0 +1,26 @@
+*{
+    margin:auto;
+    overflow: auto;
+}
+h1{
+    text-align: center;
+}
+
+.formu{
+    margin:38px 380px ;
+    padding:50px;
+    width:55vw;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;    
+    border-radius:12px;
+}
+.rua mat-form-field {
+    width: 100%;
+}
+
+.solicitante mat-form-field {
+    width: 100%;
+}
+
+.btns{
+    text-align: right;
+}

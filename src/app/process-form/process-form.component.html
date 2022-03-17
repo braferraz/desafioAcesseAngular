@@ -1,0 +1,116 @@
+<form class="form-horizontal" [formGroup]="formProcess">
+    <div class="container formu">
+        <h1>Inserir novo processo</h1>
+        <div class="row mb-1">
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Assunto:</mat-label>
+                    <select matNativeControl required formControlName="subject">
+                    <option value="" disabled selected>Selecione</option>
+                      <option value="Solicitação de revisão">Solicitação de revisão</option>
+                      <option value="Contestação">Contestação</option>
+                      <option value="Solicitação Faz">Solicitação Faz</option>
+                    </select>
+                  </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row mb-1">
+            <div class="col solicitante">
+                <mat-form-field>
+                    <mat-label><i class="fa fa-user" aria-hidden="true"></i> Nome do solicitante:</mat-label>
+                    <input matInput placeholder="Insira o nome do solicitante" formControlName="applicantsName">
+                </mat-form-field>
+            </div>
+            <div class="col solicitante">
+                <mat-form-field>
+                    <mat-label><i class="fa fa-envelope" aria-hidden="true"></i> Email do solicitante:</mat-label>
+                    <input matInput placeholder="ex: solicitante@email.com" formControlName="applicantsEmail">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mb-1">
+            
+        </div>
+        <div class="row mb-1">
+            <div class="col" id="phone">
+                <mat-form-field>
+                    <mat-label><i class="fa fa-phone-square" aria-hidden="true"></i> Telefone do solicitante:</mat-label>
+                    <input matInput placeholder="ex: (DDD) 9 1234-5678" formControlName="phone">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col">
+                <mat-form-field>
+                    <mat-label><i class="fa fa-map-marker" aria-hidden="true"></i> CEP:</mat-label>
+                    <input matInput placeholder="ex: xxxxx-xxx"  formControlName="zipCode">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Cidade:</mat-label>
+                    <input matInput placeholder="ex: São Paulo" readonly formControlName="city">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Bairro:</mat-label>
+                    <input matInput placeholder="ex: Jardim Maria Antonieta" readonly  formControlName="district">
+                </mat-form-field>
+            </div>
+        </div>
+        
+        <div class="row mb-2">
+            <div class="col rua">
+                <mat-form-field>
+                    <mat-label>Rua:</mat-label>
+                    <input matInput placeholder="ex: Rua São José" readonly formControlName="street">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>N°:</mat-label>
+                    <input matInput placeholder="ex: n°142" formControlName="number">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Complemento:</mat-label>
+                    <input matInput placeholder="ex: Apto 115" formControlName="additionalAddress">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <mat-form-field >
+                    <mat-label>Data do Processo:</mat-label>
+                    <input matInput [matDatepicker]="picker" [max]="maxDate" readonly formControlName="processDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-8">
+                <mat-form-field>
+                    <mat-label><i class="fa fa-calendar" aria-hidden="true"></i> Data de Criação:</mat-label>
+                    <input matInput readonly formControlName="creationDate">
+                </mat-form-field>    
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-5">
+                <input type="file" class="custom-file-input">
+                <label class="custom-file-label" formControlName="data">Insira um arquivo (.pdf)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col btns">
+                <button mat-stroked-button>Voltar</button>
+                <button mat-stroked-button color="primary" type="submit" class="ml-2">Enviar</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+   
+        

@@ -1,4 +1,4 @@
-<form class="form-horizontal" [formGroup]="formProcess">
+<form class="form-horizontal" #f="ngForm" [formGroup]="formProcess">
     <div class="container formu">
         <h1>Inserir novo processo</h1>
         <div class="row mb-1">
@@ -44,7 +44,7 @@
             <div class="col">
                 <mat-form-field>
                     <mat-label><i class="fa fa-map-marker" aria-hidden="true"></i> CEP:</mat-label>
-                    <input matInput placeholder="ex: xxxxx-xxx"  formControlName="zipCode">
+                    <input matInput placeholder="ex: xxxxx-xxx" formControlName="zipCode" #zipCode (blur)="findCep(zipCode.value, f)">
                 </mat-form-field>
             </div>
             <div class="col">
@@ -89,18 +89,12 @@
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-            </div>
-            <div class="col-8">
-                <mat-form-field>
-                    <mat-label><i class="fa fa-calendar" aria-hidden="true"></i> Data de Criação:</mat-label>
-                    <input matInput readonly formControlName="creationDate">
-                </mat-form-field>    
-            </div>
+            </div>  
         </div>
         <div class="row mb-1">
             <div class="col-5">
-                <input type="file" class="custom-file-input">
-                <label class="custom-file-label" formControlName="data">Insira um arquivo (.pdf)</label>
+                <input type="file" class="custom-file-input" formControlName="data">
+                <label class="custom-file-label" >Insira um arquivo (.pdf)</label>
             </div>
         </div>
         <div class="row">
@@ -113,4 +107,3 @@
 </form>
 
    
-        

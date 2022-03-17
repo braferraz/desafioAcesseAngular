@@ -5,7 +5,7 @@ export class Process {
     applicantsName: string = '';
     applicantsEmail: string = '';
     phone: any = null;
-    zipCode: any = null;
+    zipCode: any = '';
     city: string = '';
     district: string = '';
     street: string = '';

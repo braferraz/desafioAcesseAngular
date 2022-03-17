@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProcessFormComponent } from './process-form/process-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -33,7 +34,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatInputModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]

@@ -16,4 +16,5 @@ export class Process {
     creationDate: any = null;
     active: boolean = true;
     data: Byte[] = [];
+    deleted_by: string ='';
 }

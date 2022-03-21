@@ -13,26 +13,21 @@ export class ProcessService {
     'Content-Type': 'application/json',
     "Authorization": `Bearer ${this.idToken}`
   })};
+
   public insertProcess(process:any){
-    return this.http.post('/api/process/new', process, this.headers)
-      
+    return this.http.post('/api/process/new', process, this.headers);
   }
   public insertFile(pdf:any){
     return this.http.post('api/upload', pdf, this.headers);  
   }
   public getProcess(id:any){
-    return this.http.get('/api/process/edit/' + `${id}`, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        "Authorization": `Bearer ${this.idToken}`
-      })
-    });
+    return this.http.get('/api/process/edit/' + `${id}`, this.headers);
   }
   public getAllProcess(){
     return this.http.get('/api/process/all', this.headers);
   }
   public deleteProcess(id:any, process:any){
-    return this.http.put('/api/process/delete/' + `${id}`, process);
+    return this.http.put('/api/process/delete/' + `${id}`, process, this.headers);
   }
   public getPdfFile(id:any){
     return this.http.get<any>('/api/get/' + `${id}`,  {
@@ -41,5 +36,5 @@ export class ProcessService {
       }),
       responseType: 'blob' as 'json'
     }
-    )}
+  )}
 }

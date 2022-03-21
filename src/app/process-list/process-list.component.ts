@@ -24,12 +24,13 @@ export class ProcessListComponent implements OnInit {
   }
 
   onDelete(id: any, process:any){
-    console.log(id, process);
+
     let text = "Você realmente deseja excluir o processo: " + id + " ?";
+    process.deletedBy = localStorage.getItem("name");
     if (confirm(text) == true) {
-      this.processService.deleteProcess(id, process).subscribe(res => console.log(res));
-      alert("Processo removido!");
-      location.reload();
+      this.processService.deleteProcess(id, process).subscribe(res => 
+      alert("Processo removido!"));
+      location.reload()
     } 
   }
 

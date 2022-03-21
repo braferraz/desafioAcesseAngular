@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 telaLogin">
+            <h2>Desafio Acessa - Login</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" class="formLogin mt-4">
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email:</mat-label>
+                            <input matInput type="email" required formControlName="email">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Senha:</mat-label>
+                            <input matInput type="password" required formControlName="password">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                            <button mat-stroked-button>Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">N° do Processo</th>
+            <th scope="col">Nome do solicitante</th>
+            <th scope="col">Data do processo</th>
+            <th scope="col">Ações</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let process of processo; let i = index;">
+            <th scope="row">{{ process.numberProcess }}</th>
+            <td>{{ process.name }}</td>
+            <td>{{ process.processDate | date: 'dd/MM/yyyy' }}</td>
+            <td routerLink="/processos/editar/{{ process.numberProcess }}"><i class="fa fa-pencil text-primary " aria-hidden="true"></i><a > Editar</a></td>
+            <td (click)="onDelete(process.numberProcess, process)"><i class="fa fa-trash test" aria-hidden="true"></i><a > Excluir</a></td>
+            <td (click)="getPdf(process.numberProcess, process.name)"><i class="fa fa-download text-success" aria-hidden="true"></i> Baixar PDF</td>
+          </tr>
+        </tbody>
+      </table>
+</div>

@@ -1,10 +1,8 @@
-<form class="form-horizontal" #f="ngForm" [formGroup]="formProcess" (ngSubmit)="onSubmit(formProcess)">
+<form class="form-horizontal" *ngIf="editProcess" #f="ngForm" [formGroup]="editProcess">
     <div class="container formu">
-        <h1>Inserir novo processo</h1>
-        
+        <h1>Editar processo</h1>
         <div class="row mb-1">
             <div class="col">
-                <p><span class="text-danger fontSmall">Campos com * são obrigatórios.</span></p>
                 <mat-form-field>
                     <mat-label>Assunto:</mat-label>
                     <select matNativeControl required formControlName="subject">
@@ -21,13 +19,13 @@
             <div class="col solicitante">
                 <mat-form-field>
                     <mat-label><i class="fa fa-user" aria-hidden="true"></i> Nome do solicitante:</mat-label>
-                    <input matInput placeholder="Insira o nome do solicitante" formControlName="name">
+                    <input matInput placeholder="Insira o nome do solicitante" formControlName="applicantsName">
                 </mat-form-field>
             </div>
             <div class="col solicitante">
                 <mat-form-field>
                     <mat-label><i class="fa fa-envelope" aria-hidden="true"></i> Email do solicitante:</mat-label>
-                    <input matInput placeholder="ex: solicitante@email.com" formControlName="email">
+                    <input matInput placeholder="ex: solicitante@email.com" formControlName="applicantsEmail">
                 </mat-form-field>
             </div>
         </div>
@@ -70,16 +68,16 @@
                     <input matInput placeholder="ex: Rua São José" readonly formControlName="street">
                 </mat-form-field>
             </div>
-            <div class="col has-error">
+            <div class="col">
                 <mat-form-field>
-                    <mat-label class="">N°:</mat-label>
+                    <mat-label>N°:</mat-label>
                     <input matInput placeholder="ex: n°142" formControlName="number">
                 </mat-form-field>
             </div>
             <div class="col">
                 <mat-form-field>
                     <mat-label>Complemento:</mat-label>
-                    <input matInput placeholder="ex: Apto 115" formControlName="additional">
+                    <input matInput placeholder="ex: Apto 115" formControlName="additionalAddress">
                 </mat-form-field>
             </div>
         </div>
@@ -95,18 +93,21 @@
         </div>
         <div class="row mb-1">
             <div class="col-5">
-                <input type="file" class="custom-file-input" id="upload" formControlName="data" accept="application/pdf" (change)="onFileChanged($event)">
-                <label class="custom-file-label has-feedback" id="valuePDF" >Insira um arquivo</label>
+                <input type="file" class="custom-file-input" formControlName="data" accept="application/pdf" (change)="onFileChanged($event)">
+                <label class="custom-file-label" id="valuePDF">Insira um arquivo (.pdf)</label>
                 <span class="fontSmall">(.pdf) até 200KB</span>
+            </div>
+            <div class="col-5 mb-4">
+                <button mat-stroked-button (click)="getPdf()">Baixar PDF</button>
             </div>
         </div>
         <div class="row">
             <div class="col btns">
-                <button mat-stroked-button routerLink="/processos/">Voltar</button>
-                <button mat-stroked-button color="primary" [disabled]="!formProcess.valid" type="submit" class="ml-2">Enviar</button>
+                <button mat-stroked-button routerLink="/processos">Voltar</button>
+                <button mat-stroked-button color="primary" type="submit" class="ml-2">Enviar</button>
             </div>
         </div>
     </div>
-    <div>{{ formProcess.value | json}}</div>
-    <div>{{ formProcess.valid | json }}</div>
 </form>
+
+   

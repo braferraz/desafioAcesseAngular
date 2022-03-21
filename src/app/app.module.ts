@@ -15,13 +15,23 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ProcessEditComponent } from './process-edit/process-edit.component';
+import { ProcessListComponent } from './process-list/process-list.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
-    ProcessFormComponent
+    ProcessFormComponent,
+    ProcessEditComponent,
+    ProcessListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +45,12 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatFormFieldModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatTableModule,
+    MatDialogModule,
+    MatIconModule,
     HttpClientModule
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

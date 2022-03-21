@@ -1,0 +1,41 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    text-align: center;
+}
+
+.telaLogin {
+    width: 600px;
+    margin: 130px auto;
+}
+
+.btnLogar {
+    text-align: right;
+}
+
+.formLogin {    
+    padding: 60px 50px 20px;
+    border-radius: 15px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+.example-right-align {
+    text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+input.example-right-align {
+    -moz-appearance: textfield;
+}
+.mat-form-field {
+    width:100%;
+}

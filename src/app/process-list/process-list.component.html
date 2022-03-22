@@ -1,4 +1,24 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+  <div class="container-fluid">
+    <a id="navDesafio"><img src="http://www.acessetecnologia.com.br/img/logo.png" width="100px"/></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ml-5" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">  
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/processos/novo/">Novo Processo</a>
+        </li>
+      </ul>
+      <form class="d-flex marginSearch">
+        <input class="form-control me-2" type="search" placeholder="Insira aqui sua pesquisa" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>
 <div class="container">
+  
     <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -10,7 +30,7 @@
             <th scope="col"></th>
         </thead>
         <tbody>
-          <tr *ngFor="let process of processo; let i = index;">
+          <tr *ngFor="let process of processo | paginate: { itemsPerPage: 10, currentPage: p };">
             <th scope="row">{{ process.numberProcess }}</th>
             <td>{{ process.name }}</td>
             <td>{{ process.processDate | date: 'dd/MM/yyyy' }}</td>
@@ -20,4 +40,7 @@
           </tr>
         </tbody>
       </table>
+      <div class="text-right">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
 </div>

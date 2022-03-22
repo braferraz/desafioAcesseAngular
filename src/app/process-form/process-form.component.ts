@@ -5,6 +5,7 @@ import { Process } from '../shared/process';
 import { HttpClient } from '@angular/common/http';
 import { ProcessService } from '../shared/process.service';
 import * as FileSaver from 'file-saver';
+import { Route, Router } from '@angular/router';
 @Component({
   templateUrl: './process-form.component.html',
   styleUrls: ['./process-form.component.css']
@@ -18,7 +19,8 @@ export class ProcessFormComponent implements OnInit {
   selectedFile!: File;
 
   constructor(private http: HttpClient,
-    private processService: ProcessService) { }
+    private processService: ProcessService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.createForm(new Process())
@@ -45,23 +47,21 @@ export class ProcessFormComponent implements OnInit {
 
   onSubmit(formProcess:any){
     this.submitted = true;
-    console.log(this.selectedFile.name);
-    console.log(formProcess.value);
-
     const uploadData = new FormData();
+    console.log(uploadData);
     uploadData.append('pdfFile', this.selectedFile, this.selectedFile.name);
 
-    this.processService.insertFile(uploadData).subscribe();
+    this.processService.insertFile(uploadData).subscribe(res =>console.log(res));
 
     this.processService.insertProcess(formProcess.value)
       .subscribe((result)=>{
       console.warn("result " + result)
     });
+    this.router.navigate(["/processos"]);
   }
 
   onFileChanged(event:any) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile.size);
     if(this.selectedFile.size >= 204800){
       alert("Tamanho não permitido!");
       this.formProcess.get('data')!.setValue(null);

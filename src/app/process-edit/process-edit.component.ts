@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { ProcessService } from '../shared/process.service';
 import * as FileSaver from 'file-saver';
@@ -18,13 +18,15 @@ export class ProcessEditComponent implements OnInit {
   editProcess!: FormGroup;
   maxDate = new Date();
   id: any;
+  submitted:any;
   retrieveResponse: any;
   selectedFile: any;
   label: HTMLElement | any;
   
   constructor(private http: HttpClient,
     private processService: ProcessService,
-    private aRoute: ActivatedRoute) { }
+    private aRoute: ActivatedRoute,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.id = this.aRoute.snapshot.params['id'];
@@ -32,17 +34,33 @@ export class ProcessEditComponent implements OnInit {
     
   }
 
+  onSubmit(editProcess:any){
+    this.submitted = true;
+    if(this.selectedFile != undefined){
+      const uploadData = new FormData();
+      console.log( this.selectedFile)
+      console.log(uploadData);
+      uploadData.append('pdfFile', this.selectedFile, this.selectedFile.name);
+  
+      this.processService.updatePdf(this.id, uploadData).subscribe(res =>console.log(res));
+    }
+    this.processService.updateProcess(this.id, editProcess.value)
+      .subscribe((result)=>{
+      console.warn("result " + result)
+    });
+    this.router.navigate(["/processos"]);
+  }
   createForm(res: any){
     this.editProcess = new FormGroup({
       subject: new FormControl(res.subject, Validators.required),
-      applicantsName: new FormControl(res.name, [Validators.required, Validators.maxLength(70), Validators.pattern("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$")]), 
-      applicantsEmail: new FormControl(res.email, [Validators.required, Validators.email]),
+      name: new FormControl(res.name, [Validators.required, Validators.maxLength(70), Validators.pattern("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$")]), 
+      email: new FormControl(res.email, [Validators.required, Validators.email]),
       phone: new FormControl(res.phone, [Validators.required, Validators.pattern("[0-9]+$"), Validators.maxLength(11), Validators.minLength(11)]),
       zipCode: new FormControl(res.zipCode, [Validators.required, Validators.pattern("^[0-9]{8}$")]),
       city: new FormControl(res.city),
       district: new FormControl(res.district),
       street: new FormControl(res.street),
-      additionalAddress: new FormControl(res.additional, Validators.maxLength(30)),
+      additional: new FormControl(res.additional, Validators.maxLength(30)),
       number: new FormControl(res.number, [Validators.required, Validators.maxLength(5), Validators.pattern("[0-9]+$")]),
       processDate: new FormControl(res.processDate, Validators.required),
       data: new FormControl(res.data),

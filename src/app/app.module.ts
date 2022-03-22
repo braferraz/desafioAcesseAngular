@@ -18,12 +18,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { ProcessEditComponent } from './process-edit/process-edit.component';
 import { ProcessListComponent } from './process-list/process-list.component';
 import { LoginComponent } from './login/login.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuardService } from './guards/auth-guard.service';
+import { LoginService } from './shared/login.service';
 
 @NgModule({
   declarations: [ 
@@ -48,9 +49,13 @@ import { LoginComponent } from './login/login.component';
     MatTableModule,
     MatDialogModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, AuthGuardService, LoginService],
+  bootstrap: [AppComponent],
+  
+
+  
 })
 export class AppModule { }

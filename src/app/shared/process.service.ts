@@ -15,16 +15,28 @@ export class ProcessService {
   })};
 
   public insertProcess(process:any){
-    return this.http.post('/api/process/new', process, this.headers);
-  }
+    return this.http.post('/api/process/new',process,  {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.idToken}`,
+      }),
+    }
+  )}
   public insertFile(pdf:any){
-    return this.http.post('api/upload', pdf, this.headers);  
-  }
+    return this.http.post('api/upload', pdf,  {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.idToken}`
+      }),
+    }
+  )}
   public getProcess(id:any){
     return this.http.get('/api/process/edit/' + `${id}`, this.headers);
   }
   public getAllProcess(){
     return this.http.get('/api/process/all', this.headers);
+  }
+  public getPageProcess(page:any, size:any){
+    return this.http.get(`/api/process/all?page=${page}&size=${size}`, this.headers);
   }
   public deleteProcess(id:any, process:any){
     return this.http.put('/api/process/delete/' + `${id}`, process, this.headers);
@@ -37,4 +49,18 @@ export class ProcessService {
       responseType: 'blob' as 'json'
     }
   )}
+  public updateProcess(id:any, process:any){
+    return this.http.put('/api/process/update/' + `${id}`, process, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.idToken}`
+      }),
+    });
+  }
+  public updatePdf(id:any, pdf:any){
+    return this.http.put('/api/update/' + `${id}`, pdf, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.idToken}`
+      }),
+    });
+  }
 }

@@ -1,4 +1,4 @@
-<form class="form-horizontal" #f="ngForm" [formGroup]="formProcess" (ngSubmit)="onSubmit(formProcess)">
+<form class="form-horizontal" #f="ngForm" [formGroup]="formProcess" (ngSubmit)="onSubmit(formProcess)" enctype="multipart/form-data">
     <div class="container formu">
         <h1>Inserir novo processo</h1>
         
@@ -107,6 +107,4 @@
             </div>
         </div>
     </div>
-    <div>{{ formProcess.value | json}}</div>
-    <div>{{ formProcess.valid | json }}</div>
 </form>

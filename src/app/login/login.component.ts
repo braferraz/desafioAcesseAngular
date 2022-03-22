@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(loginForm:FormGroup){
     this.loginService.getToken(loginForm.value);
-    
   }
   createForm() {
     this.loginForm = new FormGroup({

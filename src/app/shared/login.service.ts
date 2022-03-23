@@ -12,7 +12,7 @@ export class LoginService {
   userAuthenticated:boolean = false;
   tokenUsuario:any
   getToken(user:any) {
-    return this.http.post("api/login", JSON.stringify(user), {responseType: 'text'}).subscribe(res =>{
+    return this.http.post("https://desafioacesse.herokuapp.com/login", JSON.stringify(user), {responseType: 'text'}).subscribe(res =>{
       var arr = res.split(" ");
       var token = arr[0];
       var name = arr[1];

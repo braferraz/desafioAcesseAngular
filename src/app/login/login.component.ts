@@ -9,14 +9,13 @@ import { LoginService } from '../shared/login.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  constructor(private loginService: LoginService, private router:Router) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.createForm()
   }
 
   onSubmit(loginForm:FormGroup){
-    this.router.navigate(['/processos']);
     this.loginService.getToken(loginForm.value);
   }
   

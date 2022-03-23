@@ -33,7 +33,7 @@ export class ProcessService {
     return this.http.get('/api/process/edit/' + `${id}`, this.headers);
   }
   public getAllProcess(){
-    return this.http.get('https://desafioacesse.herokuapp.com/process/all', this.headers);
+    return this.http.get('/api/process/all', this.headers);
   }
   public getPageProcess(page:any, size:any){
     return this.http.get(`/api/process/all?page=${page}&size=${size}`, this.headers);

@@ -63,4 +63,7 @@ export class ProcessService {
       }),
     });
   }
+  public search(search:string){
+    return this.http.get('/api/process/search/' + `${search}`, this.headers)
+  }
 }

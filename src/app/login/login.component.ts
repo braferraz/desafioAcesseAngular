@@ -9,9 +9,7 @@ import { LoginService } from '../shared/login.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  user = {email: '', password: ''};
-  constructor(private loginService: LoginService,
-    private route:Router) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.createForm()
@@ -20,6 +18,7 @@ export class LoginComponent implements OnInit {
   onSubmit(loginForm:FormGroup){
     this.loginService.getToken(loginForm.value);
   }
+  
   createForm() {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),

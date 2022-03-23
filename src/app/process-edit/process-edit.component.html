@@ -83,13 +83,20 @@
         </div>
         <div class="row mb-4">
             <div class="col">
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>Data do Processo:</mat-label>
                     <input matInput [matDatepicker]="picker" [max]="maxDate" readonly formControlName="processDate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
+                
             </div>  
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Data atual:</mat-label>
+                    <input value="{{data | date: 'dd/MM/yyyy hh:mm'}}" matInput readonly>
+                </mat-form-field>
+            </div>
         </div>
         <div class="row mb-1">
             <div class="col-5">
@@ -98,13 +105,13 @@
                 <span class="fontSmall">(.pdf) até 200KB</span>
             </div>
             <div class="col-5 mb-4">
-                <button mat-stroked-button (click)="getPdf()">Baixar PDF</button>
+                <button type="button"mat-stroked-button (click)="getPdf()">Baixar PDF</button>
             </div>
         </div>
         <div class="row">
             <div class="col btns">
                 <button mat-stroked-button routerLink="/processos">Voltar</button>
-                <button mat-stroked-button color="primary" type="submit" class="ml-2">Enviar</button>
+                <button mat-stroked-button [disabled]="!editProcess.valid" color="primary" type="submit" class="ml-2">Enviar</button>
             </div>
         </div>
     </div>

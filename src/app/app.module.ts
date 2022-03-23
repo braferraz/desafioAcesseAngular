@@ -54,8 +54,5 @@ import { LoginService } from './shared/login.service';
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, AuthGuardService, LoginService],
   bootstrap: [AppComponent],
-  
-
-  
 })
 export class AppModule { }

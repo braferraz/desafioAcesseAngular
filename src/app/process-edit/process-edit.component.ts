@@ -12,7 +12,7 @@ import * as FileSaver from 'file-saver';
   styleUrls: ['./process-edit.component.css']
 })
 export class ProcessEditComponent implements OnInit {
-
+  public data : Date = new Date();
   process:any;
   editProcessData:any;
   editProcess!: FormGroup;
@@ -31,23 +31,17 @@ export class ProcessEditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.aRoute.snapshot.params['id'];
     this.processService.getProcess(this.id).subscribe((res:any) => this.createForm(res));
-    
   }
 
   onSubmit(editProcess:any){
     this.submitted = true;
     if(this.selectedFile != undefined){
       const uploadData = new FormData();
-      console.log( this.selectedFile)
-      console.log(uploadData);
       uploadData.append('pdfFile', this.selectedFile, this.selectedFile.name);
   
-      this.processService.updatePdf(this.id, uploadData).subscribe(res =>console.log(res));
+      this.processService.updatePdf(this.id, uploadData).subscribe();
     }
-    this.processService.updateProcess(this.id, editProcess.value)
-      .subscribe((result)=>{
-      console.warn("result " + result)
-    });
+    this.processService.updateProcess(this.id, editProcess.value).subscribe();
     this.router.navigate(["/processos"]);
   }
   createForm(res: any){
@@ -102,6 +96,7 @@ export class ProcessEditComponent implements OnInit {
     if(this.selectedFile.size >= 204800){
       alert("Tamanho não permitido!");
       this.editProcess.get('data')!.setValue(null);
+      this.selectedFile = null;
     }
     else{
       this.label = document.getElementById("valuePDF");

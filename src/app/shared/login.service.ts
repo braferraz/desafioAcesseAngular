@@ -7,13 +7,12 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
  
-  constructor(private http: HttpClient,
-    private route: Router) { }
+  constructor(private http: HttpClient, private route: Router) { }
 
   userAuthenticated:boolean = false;
   tokenUsuario:any
   getToken(user:any) {
-    return this.http.post("/api/login", JSON.stringify(user), {responseType: 'text'}).subscribe(res =>{
+    return this.http.post("api/login", JSON.stringify(user), {responseType: 'text'}).subscribe(res =>{
       var arr = res.split(" ");
       var token = arr[0];
       var name = arr[1];

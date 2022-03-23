@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'processos', component: ProcessListComponent, canActivate:[AuthGuardService]},
   { path: 'processos/novo', component: ProcessFormComponent, canActivate:[AuthGuardService] },
   { path: 'processos/editar/:id', component: ProcessEditComponent, canActivate:[AuthGuardService] },
-  { path: '', component: ProcessListComponent, canActivate:[AuthGuardService]}
+  { path: '', component: LoginComponent}
 ];
 
 @NgModule({

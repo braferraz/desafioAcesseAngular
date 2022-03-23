@@ -4,8 +4,8 @@ import { of } from 'rxjs';
 import { Process } from '../shared/process';
 import { HttpClient } from '@angular/common/http';
 import { ProcessService } from '../shared/process.service';
-import * as FileSaver from 'file-saver';
-import { Route, Router } from '@angular/router';
+
+import { Router } from '@angular/router';
 @Component({
   templateUrl: './process-form.component.html',
   styleUrls: ['./process-form.component.css']
@@ -39,7 +39,7 @@ export class ProcessFormComponent implements OnInit {
       additional: new FormControl(process.additional, Validators.maxLength(30)),
       number: new FormControl(process.number, [Validators.required, Validators.maxLength(5), Validators.pattern("[0-9]+$")]),
       processDate: new FormControl(process.processDate, Validators.required),
-      creationDate: new FormControl(null), //[ngModel]="data | date: 'dd/MM/yyyy hh:mm'" pipe para datas, deve ser convertido no java para data no banco e vice versa
+      creationDate: new FormControl(null), 
       data: new FormControl(null, [Validators.required]),
       active: new FormControl(true),
     })
@@ -51,12 +51,9 @@ export class ProcessFormComponent implements OnInit {
     console.log(uploadData);
     uploadData.append('pdfFile', this.selectedFile, this.selectedFile.name);
 
-    this.processService.insertFile(uploadData).subscribe(res =>console.log(res));
+    this.processService.insertFile(uploadData).subscribe();
 
-    this.processService.insertProcess(formProcess.value)
-      .subscribe((result)=>{
-      console.warn("result " + result)
-    });
+    this.processService.insertProcess(formProcess.value).subscribe();
     this.router.navigate(["/processos"]);
   }
 
